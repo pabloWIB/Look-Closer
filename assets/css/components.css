@@ -1,0 +1,244 @@
+/* ==========================================================================
+   components.css — brand, week list, panel toggle, panel, prose, figures,
+   ring, skip link
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Brand
+   -------------------------------------------------------------------------- */
+
+.brand {
+  max-width: none;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: var(--tracking-wide);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   2. The week
+   Editorial device, not navigation: the days are text, they lead nowhere.
+   -------------------------------------------------------------------------- */
+
+.week {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, auto);
+  gap: var(--space-1) var(--space-6);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: var(--color-ink-soft);
+}
+
+.week--closing {
+  grid-template-rows: auto;
+}
+
+/* In the masthead the week only appears from 1024px up; below that it lives
+   in the panel. Declared after `.week` so it wins on source order. */
+.site-header__week {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Panel toggle
+   -------------------------------------------------------------------------- */
+
+.week-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -0.5rem;
+  color: var(--color-ink);
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.week-toggle:hover {
+  opacity: 0.75;
+}
+
+.week-toggle:active {
+  transform: scale(0.94);
+}
+
+.week-toggle svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+.week-toggle__close,
+.week-toggle[aria-expanded="true"] .week-toggle__open {
+  display: none;
+}
+
+.week-toggle[aria-expanded="true"] .week-toggle__close {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   4. Panel
+   -------------------------------------------------------------------------- */
+
+.week-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: var(--space-7) var(--space-4);
+  background: var(--color-bg);
+}
+
+.week-panel[hidden] {
+  display: none;
+}
+
+.week-panel__list {
+  display: grid;
+  gap: var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 9vw, 3rem);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.week-panel__list li:last-child {
+  font-style: italic;
+  color: var(--color-accent-ink);
+}
+
+.is-panel-open {
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   5. Prose
+   -------------------------------------------------------------------------- */
+
+.prose {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-ink-soft);
+}
+
+.pull-quote {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: var(--leading-tight);
+  color: var(--color-ink);
+}
+
+/* --------------------------------------------------------------------------
+   6. Figures
+   -------------------------------------------------------------------------- */
+
+.figure {
+  margin: 0;
+}
+
+.figure img {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   7. Ring
+   -------------------------------------------------------------------------- */
+
+.ring {
+  width: clamp(7rem, 12vw, 9.5rem);
+  height: auto;
+  margin-inline: auto;
+  fill: var(--color-accent-ink);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+}
+
+/* --------------------------------------------------------------------------
+   8. Skip link
+   -------------------------------------------------------------------------- */
+
+.skip-link {
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-3);
+  z-index: 30;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-ink);
+  color: var(--color-bg);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  transform: translateY(-200%);
+  transition: transform var(--transition);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   9. Error page
+   -------------------------------------------------------------------------- */
+
+.error {
+  display: grid;
+  align-content: center;
+  gap: var(--space-5);
+  min-height: 60vh;
+  padding-bottom: var(--space-8);
+}
+
+.error__body {
+  max-width: 40ch;
+  color: var(--color-ink-soft);
+}
+
+.error__link {
+  justify-self: start;
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid currentColor;
+  font-size: var(--text-md);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.error__link:hover {
+  color: var(--color-accent-ink);
+  text-decoration: none;
+}
+
+.error__link:active {
+  color: var(--color-accent-ink);
+  border-color: transparent;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   10. Media queries
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1024px) {
+  .site-header__week {
+    display: grid;
+  }
+
+  .week-toggle {
+    display: none;
+  }
+
+  .pull-quote {
+    font-size: var(--text-md);
+  }
+}
+
+@media (min-width: 1440px) {
+  .pull-quote {
+    font-size: var(--text-lg);
+  }
+}

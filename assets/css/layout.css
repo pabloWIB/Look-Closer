@@ -1,0 +1,138 @@
+/* ==========================================================================
+   layout.css — shell, masthead bar, wordmark, story grid, footer
+   Mobile-first. Breakpoints: 480 / 768 / 1024 / 1440.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Shell
+   -------------------------------------------------------------------------- */
+
+.shell {
+  width: var(--shell-width);
+  max-width: var(--shell-max);
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Masthead bar — brand, the week, the panel toggle
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   3. Wordmark
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  padding-block: var(--space-2) var(--space-6);
+}
+
+.wordmark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: 0.01em;
+}
+
+.wordmark span {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   4. Story grid
+   -------------------------------------------------------------------------- */
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: start;
+  padding-bottom: var(--space-8);
+}
+
+.story__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* Two paragraphs side by side, but only once the track is wide enough to
+   keep each one above ~30 characters. */
+.story__pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-4) var(--space-5);
+}
+
+/* --------------------------------------------------------------------------
+   5. Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-5);
+  padding-block: var(--space-5);
+  border-top: 1px solid rgba(201, 219, 217, 0.25);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   6. Media queries
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 768px) {
+  .story {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .story__col--wide {
+    grid-column: 1 / -1;
+  }
+
+  .masthead {
+    padding-block: var(--space-2) var(--space-7);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header {
+    padding-block: var(--space-3);
+  }
+
+  .story {
+    grid-template-columns: 36fr 20fr 30fr;
+    gap: clamp(2rem, 5vw, 5.5rem);
+  }
+
+  .story__col--wide {
+    grid-column: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .story {
+    padding-bottom: var(--space-8);
+  }
+
+  .masthead {
+    padding-block: var(--space-3) var(--space-8);
+  }
+}

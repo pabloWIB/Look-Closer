@@ -1,197 +1,120 @@
-![image](https://github.com/pabloDYEL/ESTATICA-25/assets/116923433/9e976078-c2e7-4d04-8687-d6f265714f77)
+# Look-Closer
 
-# Look Closer 🌊
+Editorial one-pager for ANDSIOSA, structured as a week and set in Y2K display type.
 
-> *"And every time she dove, she was amazed at the beauty and diversity of life that lived beneath the surface."*
+[![Live demo](https://img.shields.io/badge/demo-lookcloser.wib.digital-2ea44f)](https://lookcloser.wib.digital)
+[![Hire me on Fiverr](https://img.shields.io/badge/Hire%20me%20on-Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white)](https://www.fiverr.com/pablonietop)
+![Dependencies](https://img.shields.io/badge/npm%20dependencies-0-brightgreen)
+![Build step](https://img.shields.io/badge/build%20step-none-lightgrey)
 
-Look Closer is an immersive digital experience that explores the profound connections between the underwater world and human emotions through poetic storytelling and visual design.
+## Description
 
-## 🎨 Project Overview
+A brand page built around a single idea: what you see on a coral reef is not
+what is there. The text follows a diver past the surface and lands on the
+comparison the page is named for — that a reef and an inner life are organised
+the same way, everything tangled into everything else.
 
-This static website presents a contemplative journey that draws parallels between the intricate relationships in coral reef ecosystems and the complex inner world of human emotions and energy. The narrative invites visitors to dive deeper into understanding the invisible connections that bind all life together.
+Type carries the whole identity. Two self-hosted Y2K display cuts, regular and
+slanted, with the slant reserved for the line of emphasis. There is no logo
+mark on the page.
 
-## ✨ Features
+The week runs across the top of the masthead — Monday through Friday, then
+Sunday, then *Always*. It is a typographic device, not navigation: the days are
+text and they lead nowhere. Below 1024px they move into a full-screen panel
+behind the masthead button.
 
-- **Poetic Narrative** - Immersive storytelling about underwater exploration and emotional discovery
-- **Multilingual Support** - Available in English and Spanish (En/Sp)
-- **Day Navigation** - Interactive day-based content structure
-- **Responsive Design** - Optimized for all devices
-- **Pure Frontend** - No dependencies, just HTML, CSS, and JavaScript
+## Tech stack
 
-## 🛠️ Technology Stack
+| Layer | Technology | Role in project |
+|---|---|---|
+| Markup | HTML5 | `index.html` and `404.html` |
+| Styling | CSS3, custom properties | `base.css` (tokens, reset, type), `layout.css` (grid), `components.css` |
+| Scripting | JavaScript (ES2015, no framework) | 83 lines in `assets/js/main.js` |
+| Display type | Why2k Regular, Why2k Slant | Self-hosted WOFF2, 28 KB for both |
+| Body type | Montserrat 300/400/500 | Google Fonts, `display=swap` |
+| Images | WebP | 279 KB for the three photographs |
 
-- **HTML5** - Semantic markup and structure
-- **CSS3** - Styling, animations, and responsive design
-- **Vanilla JavaScript** - Interactive elements and navigation
-- **Static Hosting Ready** - No server-side dependencies
+No dependencies, no build step, no package manager.
 
-## 📁 Project Structure
+## Project structure
 
 ```
-Look-Closer/
-├── index.html              # Main landing page
-├── css/
-│   ├── style.css          # Main stylesheet
-│   ├── typography.css     # Text styling
-│   └── animations.css     # Visual effects
-├── js/
-│   ├── main.js           # Core functionality
-│   ├── navigation.js     # Day navigation
-│   └── language.js       # Language switching
+.
+├── index.html                    # The page
+├── 404.html                      # Error page, links back to index
+├── robots.txt
+├── sitemap.xml
 ├── assets/
-│   ├── images/           # Visual assets
-│   └── fonts/            # Custom typography
-├── content/
-│   ├── en/               # English content
-│   └── es/               # Spanish content
-└── README.md             # Project documentation
+│   ├── css/
+│   │   ├── base.css              # @font-face, :root tokens, reset, base type
+│   │   ├── layout.css            # Shell, masthead, wordmark, story grid, footer
+│   │   └── components.css        # Brand, week, panel toggle, panel, prose, ring
+│   ├── js/
+│   │   └── main.js               # Week panel: open, close, Escape, scroll lock
+│   ├── fonts/
+│   │   ├── y2k-regular.woff2     # Display face
+│   │   └── y2k-slant.woff2       # Display face, slanted — the emphasis voice
+│   └── img/
+│       ├── content/              # The three photographs, WebP
+│       ├── logo/                 # Favicon and apple-touch-icon
+│       └── og/                   # Open Graph card, 1200x630
+└── docs/
+    ├── auditoria.md              # State of the project before the reorganisation
+    └── cambios.md                # What changed, by phase
 ```
 
-## 🚀 Quick Start
+## Running it locally
 
-### Installation
+The page has no build step. Open it directly:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/pabloWIB/Look-Closer.git
-   cd Look-Closer
-   ```
+```bash
+open index.html
+```
 
-2. **Local Development**
-   ```bash
-   # Python HTTP server
-   python -m http.server 8000
-   
-   # Node.js alternative
-   npx serve .
-   
-   # PHP built-in server
-   php -S localhost:8000
-   ```
+Or serve it, which is closer to how it is hosted:
 
-3. **Open in browser**
-   ```
-   http://localhost:8000
-   ```
+```bash
+npx serve .
+```
 
-### Deployment
+Note that hosting is case-sensitive and Windows is not. Serve the folder rather
+than trusting a direct file open when you rename anything under `assets/`.
 
-**Static Hosting Platforms:**
-- **Netlify**: Direct deployment from GitHub
-- **Vercel**: Connect repository for automatic deployments
-- **GitHub Pages**: Enable in repository settings
-- **Surge.sh**: `surge` command for quick deployment
+## Editing
 
-## 🌅 Content Structure
+Colour, type scale, spacing and motion are CSS custom properties declared once
+in `assets/css/base.css`. Change them there rather than in the rules that use
+them.
 
-The experience is organized around different days of the week, each representing a different aspect of the journey:
+Two things worth knowing before touching the CSS:
 
-- **Sunday** - Beginning of the exploration
-- **Tuesday** - Discovering surface beauty
-- **Wednesday** - Diving deeper into connections
-- **Thursday** - Understanding invisible forces
-- **Friday** - Emotional parallels and insights
-- **Sunday** - Coming full circle
-- **Always** - Eternal connections
+- The spacing scale is 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96, exposed as
+  `--space-1` through `--space-8`.
+- `--color-accent` (`#e84e3d`) is the selection highlight. For accent *text* use
+  `--color-accent-ink` (`#ff8a76`) — the original coral only reaches 2.9:1
+  against the teal background, below the 4.5:1 minimum.
 
-## 🌐 Language Support
+Breakpoints are mobile-first `min-width` at 768, 1024 and 1440.
 
-The project supports bilingual content:
-- **English (En)** - Primary language
-- **Spanish (Sp)** - Secondary language
+## Deployment
 
-Language switching is handled through JavaScript without page reloads.
+Deployed on Vercel at [lookcloser.wib.digital](https://lookcloser.wib.digital).
+Static: upload the repository root as-is, no build command and no output
+directory. Point the 404 handler at `404.html`.
 
-## 🎯 Key Themes
+## Author
 
-### Underwater Metaphors
-- Coral reef ecosystems as models for human connections
-- The beauty of marine life diversity
-- Hidden relationships beneath the surface
-
-### Human Emotions
-- Inner world complexity
-- Emotional energy and balance
-- Invisible connections between people
-- The interplay of thoughts, fears, and feelings
-
-### Philosophical Elements
-- Looking beyond surface appearances
-- Understanding interconnectedness
-- The power of deeper observation
-
-## 🎨 Design Philosophy
-
-- **Minimalist Aesthetic** - Clean, focused design that doesn't distract from content
-- **Immersive Typography** - Carefully chosen fonts that enhance readability
-- **Fluid Animations** - Subtle movements that mirror ocean currents
-- **Responsive Layout** - Seamless experience across all devices
-
-## 📱 Browser Compatibility
-
-- **Chrome** 60+
-- **Firefox** 55+
-- **Safari** 11+
-- **Edge** 16+
-- **Mobile browsers** (iOS Safari, Chrome Mobile)
-
-## 🔧 Customization
-
-### Content Updates
-- Edit HTML files to modify text content
-- Update language files in `/content/` directories
-- Modify day-based navigation structure
-
-### Styling
-- Customize colors and typography in `css/style.css`
-- Adjust animations in `css/animations.css`
-- Update responsive breakpoints as needed
-
-### Functionality
-- Modify navigation behavior in `js/navigation.js`
-- Update language switching logic in `js/language.js`
-- Add new interactive elements in `js/main.js`
-
-## 🔍 SEO Optimization
-
-- Semantic HTML structure
-- Meta tags for social sharing
-- Alt text for images
-- Clean URL structure
-- Fast loading times
-
-## ⚡ Performance
-
-- **Lightweight** - No external dependencies
-- **Fast Loading** - Optimized assets
-- **Efficient** - Minimal JavaScript execution
-- **Cacheable** - Static assets for CDN optimization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-content`)
-3. Make your changes
-4. Test across different browsers
-5. Commit your changes (`git commit -m 'Add new content section'`)
-6. Push to the branch (`git push origin feature/new-content`)
-7. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🌊 Inspiration
-
-*"Just like the coral reef, our inner world is full of vibrant and diverse emotions and energies, each connected and intertwined in their own delicate balance."*
-
-This project was inspired by the profound connections between natural ecosystems and human emotional landscapes, inviting visitors to explore the depths of both.
-
-## 📞 Contact
-
-- **GitHub**: [@pabloWIB](https://github.com/pabloWIB)
-- **Repository**: [Look-Closer](https://github.com/pabloWIB/Look-Closer)
+**Pablo Nieto Pérez** — [wib.digital](https://wib.digital)
+GitHub: [@pabloWIB](https://github.com/pabloWIB)
 
 ---
 
-**Dive deeper. Look closer. Discover the connections that bind us all.** 🐠
+## Hire me
+
+I build **custom internal tools, CRMs and dashboards** for small teams, and
+**conversion-focused websites** for businesses.
+
+- [Custom internal tool, CRM or dashboard](https://www.fiverr.com/pablonietop/build-a-custom-internal-app-for-your-business) — from $45
+- [Conversion-focused website](https://www.fiverr.com/pablonietop/convert-your-landing-page-design-to-code) — from $80
+- [All my services on Fiverr](https://www.fiverr.com/pablonietop)
+- [wib.digital](https://wib.digital)
